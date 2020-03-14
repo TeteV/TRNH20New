@@ -1,0 +1,251 @@
+*{box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+/*This is for the top NavBar*/
+
+.table{
+  text-align: center;
+}
+
+#mdl1{
+  display: none;
+}
+
+#edit-tech-btn{
+  display: none;
+}
+
+#add-tech-btn{
+  display: unset;
+}
+
+.fa-edit{
+  margin-left: 10px;
+  color: #2196F3;
+}
+.fa-trash-alt{
+color: red;
+}
+
+#mdl-img{
+  display: none;
+}
+
+#mdl-vid{
+  display: unset;
+}
+
+#u1{
+  display: none;
+  color: red;
+}
+
+#u2{
+  display: none;
+  color: red;
+}
+
+#all-content{
+  display: unset;
+}
+
+#to-signin{
+  display: none;
+  text-align: center;
+}
+
+#log-out-btn{
+  display: none;
+}
+
+#top-logo{
+  width: 50px;
+  height: 50px;
+}
+
+.nav-link{
+  margin-right: 10px;
+  border: 1px solid;
+  outline-color:white;
+  outline-width: thin;
+  border-radius: 8px;
+  background-color: black;
+  text-align: center;
+}
+
+.cente{
+  text-align: center;
+}
+
+#img-tk{
+  width: 100px;
+  height: 100px;
+}
+
+.subs-form {
+  border: 4px solid #f1f1f1;
+}
+
+/* Add some padding and a grey background color to containers */
+.subs-container {
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+/* Style the input elements and the submit button */
+.subs-input[type=text], input[type=submit] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Add margins to the checkbox */
+.subs-input[type=checkbox] {
+  margin-top: 16px;
+}
+
+/* Style the submit button */
+.subs-input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+
+.subs-input[type=submit]:hover {
+  opacity: 0.8;
+}
+
+#p1{
+  display: none;
+  color: red;
+}
+#p2{
+  display: none;
+  color: red;
+}
+#p3{
+  display: none;
+  color: red;
+}
+#p4{
+  display: none;
+  color: red;
+}
+#subs-peti-zone{
+  display: none;
+}
+
+#mdl-add-stu{
+  display: none;
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.activee, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.activee:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
