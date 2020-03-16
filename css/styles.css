@@ -249,3 +249,23 @@ color: red;
 .activee:after {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
+
+#news-content{
+  display: none;
+}
+
+#news-btn{
+  display: none;
+}
+
+#techs-btn{
+  display: none;
+}
+
+#add-news-btn{
+  display: none;
+}
+
+#edit-news-btn{
+  display: none;
+}

@@ -14,9 +14,9 @@ function initialize() {
   checkIfLogin();
   downloadTechs();
   loadButtons();
-
+  downloadNews();
   storageRef = firebase.storage().ref();
-  fichero = document.getElementById("mdl-add-img"); 
+  fichero = document.getElementById("mdl-add-img");
 
   document.getElementById("all-content").style.display = "none";
   document.getElementById("to-signin").style.display = "unset";
@@ -33,6 +33,11 @@ function loadButtons() {
   document.getElementById("form-login-mdl").addEventListener("submit", logIn);
   document.getElementById("log-out-btn").addEventListener("click", logOut);
   document.getElementById("clicked-petis").addEventListener("click", petiZoneWind);
+  document.getElementById("news-btn").addEventListener("click", showTakedaNews);
+  document.getElementById("techs-btn").addEventListener("click", showTechsList);
+  document.getElementById("add-news-btn").addEventListener("click", openAddNewsMdl);
+  document.getElementById("add-news-mdl-cls").addEventListener("click", closeAddNewsMdl);
+  document.getElementById("form-add-news-mdl").addEventListener("submit", AddNewsToList);
 }
 
 function downloadTechs() {
@@ -97,8 +102,6 @@ function AddTechToList(event) {
           });
         });
     }
-    // Para arreglar el problema de lo de  los videos se puede poner en una carpeta diferente haciendo if en este pubto con el "console.log(imagenASubir);" 
-    // puedes saber el tipo de dato y si el tipo es img que lo suba a selection + "/imgs" y si es video selection + "/video" ez
 
     operation = ADD;
 
@@ -173,6 +176,8 @@ function showTec(snap) {
       deleteButtons[i].addEventListener("click", deleteTech);
       editButtons[i].addEventListener("click", editTech);
     }
+    document.getElementById("news-btn").style.display = "block";
+    document.getElementById("techs-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("log-out-btn").style.display = "block";
   } else {//end If email != invitado
@@ -327,7 +332,7 @@ function logOut() {
   });
 }
 
-function  userLogged() {
+function userLogged() {
   document.getElementById("email-logged").innerHTML = email;
 }
 
@@ -349,6 +354,218 @@ function searchTech() {
   }
 }
 
-function petiZoneWind(){
+function petiZoneWind() {
   window.location.href = "petitionsWindow.html";
 }
+
+function showTakedaNews() {
+  document.getElementById("news-content").style.display = "block";
+  document.getElementById("all-content").style.display = "none";
+}
+
+function showTechsList() {
+  document.getElementById("news-content").style.display = "none";
+  document.getElementById("add-news-btn").style.display = "none";
+  document.getElementById("all-content").style.display = "unset";
+}
+
+function downloadNews() {
+  var Taknews = firebase.database().ref("news");
+  Taknews.on("value", showNews);
+}
+
+function showNews(snap) {
+  console.log("Viendo news")
+  data = snap.val();
+  var rows = "";
+
+  if (email != "invitado") {
+    if (email == "admin@admin.com") {
+      document.getElementById("all-content").style.display = "none";
+      document.getElementById("news-content").style.display = "unset";
+      document.getElementById("to-signin").style.display = "none";
+      document.getElementById("subs-peti-zone").style.display = "block";
+      document.getElementById("add-news-btn").style.display = "unset";
+      for (var key in data) {
+        console.log("Admin")
+        rows +=
+          '<div class="media border p-3 col-sm-12 mt-3">' +
+          '<div class="media-body">' +
+          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + data[key].date + '</i></small></h4>' +
+          '<p>' + data[key].body + '</p>' +
+          '<div class="row">' +
+         // '<i  class="fas fa-ellipsis-h ml-3 plask" data-news="' + key + '"></i>' +
+          '<div id="sniegel">' +
+          '<i class="far fa-trash-alt delete ml-3" data-news="' + key + '"></i>' +
+          '<i class="far fa-edit edit " data-news="' + key + '"></i>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '<img src="img/trnk.png" class="rounded-circle" style="width:60px;" />  ' +
+          '</div>'
+      }
+      // estoy va en el elipsis    data-toggle="collapse" data-target="#demo"
+      // y esto en el div solitario  id="demo" class="collapse"
+    } else {
+      document.getElementById("all-content").style.display = "none";
+      document.getElementById("news-content").style.display = "unset";
+      document.getElementById("to-signin").style.display = "none";
+      document.getElementById("add-news-btn").style.display = "none";
+      for (var key in data) {
+        console.log("Normal")
+        rows +=
+          '<div class="media border p-3 col-sm-12 mt-3">' +
+          '<div class="media-body">' +
+          '<h4>' + data[key].title + '<small><i>' + data[key].date + '</i></small></h4>' +
+          '<p>' + data[key].body + '</p>' +
+          '</div>' +
+          '<img src="img/trnk.png" class="rounded-circle" style="width:60px;" />' +
+          '</div>'
+      }
+      document.getElementById("add-news-btn").style.display = "none";
+    }
+    var newsBody = document.getElementById("news-content");
+    newsBody.innerHTML = rows;
+
+    var elips = document.getElementsByClassName("plask");
+    for (var j = 0; j < elips.length; j++) {
+      elips[j].addEventListener("click", showDelEdit);
+    }
+
+    var editButtons = document.getElementsByClassName("edit");
+    var deleteButtons = document.getElementsByClassName("delete");
+    for (var i = 0; i < deleteButtons.length; i++) {
+      deleteButtons[i].addEventListener("click", deleteNews);
+      editButtons[i].addEventListener("click", editNews);
+    }
+    document.getElementById("news-btn").style.display = "block";
+    document.getElementById("techs-btn").style.display = "block";
+    document.getElementById("login-btn").style.display = "none";
+    document.getElementById("log-out-btn").style.display = "block";
+  } else {//end If email != invitado
+    document.getElementById("all-content").style.display = "none";
+    document.getElementById("to-signin").style.display = "unset";
+  }
+  userLogged();
+}
+
+function deleteNews(event) {
+  var buttClick = event.target;
+  var keyNewsToDelete = buttClick.getAttribute("data-news");
+  var refNewsToDelete = firebase.database().ref("news/" + keyNewsToDelete);
+  refNewsToDelete.remove();
+}
+
+function editNews(event) {
+  console.log("Estoy en edit");
+
+  document.getElementById("add-news-mdl-btn").style.display = "none";
+  document.getElementById("edit-news-btn").style.display = "unset";
+  operation = UPDATE;
+
+  var buttonClicked = event.target;
+
+  var formNews = document.getElementById("form-add-news-mdl");
+  keyNewsToEdit = buttonClicked.getAttribute("data-news");
+  var refNewsToEdit = firebase.database().ref("news/" + keyNewsToEdit);
+  console.log("La key de la tecnica apunto de editar es: " + keyNewsToEdit)
+
+  refNewsToEdit.once("value", function (snap) {
+    var data = snap.val();
+    formNews.title.value = data.title,
+      formNews.Nbody.value = data.body
+  });
+  openAddNewsMdl();
+}
+
+function AddNewsToList(event) {
+  console.log("Noticia revisando si es edit o enviar");
+
+  event.preventDefault();
+
+  var formNews = event.target;
+
+  if (operation == ADD) {
+    console.log("Revisado para enviar");
+    document.getElementById("add-news-btn").style.display = "unset";
+    document.getElementById("edit-news-btn").style.display = "none";
+
+    var title = formNews.title.value;
+    var body = formNews.Nbody.value;
+    date = new Date();
+    var meses = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+    date = date.getDate()+"/" + meses[date.getMonth()] +"/"+  date.getFullYear();
+    firebase.database().ref("news/").push({
+      title,
+      body,
+      date
+    });
+    operation = ADD;
+
+    document.getElementById("mdl-add-news").style.display = "none";
+  } else {
+
+    console.log("Revisado para editar")
+
+    var refTech = firebase.database().ref("news/" + keyNewsToEdit);
+    console.log("La key de la noticia recien editada es: " + keyNewsToEdit);
+
+    refTech.update({
+      title: formNews.title.value,
+      body: formNews.Nbody.value
+    });
+
+    document.getElementById("edit-news-btn").style.display = "unset";
+    document.getElementById("add-news-btn").style.display = "none";
+
+    operation = ADD;
+    document.getElementById("mdl-add-news").style.display = "none";
+  }
+  resetNewsForm();
+}
+
+function closeAddNewsMdl() {
+  document.getElementById("mdl-add-news").style.display = "none";
+  resetNewsForm();
+}
+
+function openAddNewsMdl() {
+  console.log("modal abierto")
+  if(operation == ADD){
+    document.getElementById("add-news-mdl-btn").style.display = "unset";
+    document.getElementById("edit-news-btn").style.display = "none";
+  }else{
+    document.getElementById("add-news-mdl-btn").style.display = "none";
+    document.getElementById("edit-news-btn").style.display = "unset";
+  }
+  
+  document.getElementById("mdl-add-news").style.display = "unset";
+}
+
+function resetNewsForm() {
+  console.log("form News reseteado");
+  var formRes = document.getElementById("form-add-news-mdl");
+  document.getElementById("add-news-btn").style.display = "unset";
+  document.getElementById("edit-news-btn").style.display = "none";
+  formRes.reset();
+  operation = ADD;
+}
+
+
+// function showDelEdit(event) {
+//   var buttonClicked = event.target;
+//   var key = buttonClicked.getAttribute("data-news");
+//   var site1 = document.getElementById("sniegel");
+//   var btnns = document.getElementsByClassName("plask");
+
+// var content = 
+// '<i class="far fa-trash-alt delete ml-3 wiwi" data-news="' + key + '"></i>' +
+// '<i class="far fa-edit edit wiwi" data-news="' + key + '"></i>';
+
+// for (var j = 0; j < btnns.length; j++) {
+//   btnns[j] = content;
+// }
+
+// site1.innerHTML = content;
+
+// }
