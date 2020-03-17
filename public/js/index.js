@@ -389,7 +389,7 @@ function showNews(snap) {
       for (var key in data) {
         console.log("Admin")
         rows +=
-          '<div class="media border p-3 col-sm-12 mt-3">' +
+          '<div class="media border p-3 col-sm-11 mt-3">' +
           '<div class="media-body">' +
           '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + data[key].date + '</i></small></h4>' +
           '<p>' + data[key].body + '</p>' +
@@ -414,7 +414,7 @@ function showNews(snap) {
       for (var key in data) {
         console.log("Normal")
         rows +=
-          '<div class="media border p-3 col-sm-12 mt-3">' +
+          '<div class="media border p-3 col-sm-11 mt-3">' +
           '<div class="media-body">' +
           '<h4>' + data[key].title + '<small><i>' + data[key].date + '</i></small></h4>' +
           '<p>' + data[key].body + '</p>' +

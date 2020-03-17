@@ -60,7 +60,9 @@ body {
   .nav-link{
     margin-top: 5px;
   }
-  
+  .media{
+    margin: 10px;
+  }
   .topnav .search-container {
     float: none;
   }
@@ -282,10 +284,18 @@ img {
   width:100%;
 }
 
+#to-signin{
+  width:100%;
+}
+
 p {
   margin-left: 5px;
 }
 
 .card {
   text-align: center;
+}
+
+.media{
+  width: 94%;
 }

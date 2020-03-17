@@ -49,13 +49,13 @@
           <a class="nav-link text-light" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="contact.html">Contact</a>
+          <a class="nav-link text-light" href="contact.html">Contacto</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-light rounded" id="login-btn">Login!</a>
         </li>
         <li class="nav-item">
-          <a id="techs-btn" class="nav-link text-light rounded" href="#">Techniques</a>
+          <a id="techs-btn" class="nav-link text-light rounded" href="#">Tecnicas</a>
         </li>
         <li class="nav-item">
           <a id="news-btn" onclick="downloadNews()" class="nav-link text-light rounded" href="#">Takeda News</a>
@@ -92,7 +92,7 @@
     <div class="container">
       <div class="row">
         <div class="col-5"></div>
-        <button id="add-news-btn" type="button" class="btn btn-dark mt-3">Add News</button>
+        <button id="add-news-btn" type="button" class="btn btn-dark mt-3">Añadir Noticia</button>
       </div>
     </div>
   </div>
@@ -130,8 +130,8 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Explication</th>
+            <th>Nombre</th>
+            <th>Explicacion</th>
             <th></th>
           </tr>
         </thead>
@@ -157,10 +157,10 @@
 
   <div class="container" id="to-signin">
     <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="jumbotron col-sm-6">
-        <h1>Sorry...</h1>
-        <p>To see our content you must to Log in with a registered account</p>
+      <!-- <div class="col-sm-3"></div> -->
+      <div class="jumbotron col-sm-6 mx-auto">
+        <h1>Lo sentimos...</h1>
+        <p>Para ver nuestro contenido tiene que estar registrado</p>
       </div>
     </div>
   </div>
@@ -169,7 +169,7 @@
   <div>
     <div class="container">
       <div class="row">
-        <p>You're logged in as: <b id="email-logged"></b></p>
+        <p>Estas logueado como: <b id="email-logged"></b></p>
       </div>
     </div>
   </div>
@@ -207,7 +207,7 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title"><b>New technique</b></h4>
+          <h4 class="modal-title"><b>Nueva Tecnica</b></h4>
           <button type="button" id="add-mdl-cls" class="close" data-dismiss="modal">&times;</button>
         </div>
 
@@ -215,7 +215,7 @@
         <div class="modal-body">
           <form id="form1">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name">Nombre</label>
               <input type="text" class="form-control" name="name" id="name">
             </div>
             <div class="form-group">
@@ -248,12 +248,12 @@
             <div class="form-group">
               <label for="email">Email:</label>
               <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-              <p id="u1">Must to fill User area</p>
+              <p id="u1">Debe rellenar el email</p>
             </div>
             <div class="form-group">
               <label for="pwd">Password:</label>
               <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-              <p id="u2">Must to fill password area</p>
+              <p id="u2">Debe rellenar la contraseña</p>
             </div>
 
             <div class="container">
