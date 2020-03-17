@@ -57,6 +57,10 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .nav-link{
+    margin-top: 5px;
+  }
+  
   .topnav .search-container {
     float: none;
   }
@@ -268,4 +272,20 @@ color: red;
 
 #edit-news-btn{
   display: none;
+}
+
+video {
+  width:100%;
+}
+
+img {
+  width:100%;
+}
+
+p {
+  margin-left: 5px;
+}
+
+.card {
+  text-align: center;
 }
