@@ -58,7 +58,10 @@
           <a id="techs-btn" class="nav-link text-light rounded" href="#">Tecnicas</a>
         </li>
         <li class="nav-item">
-          <a id="news-btn" onclick="downloadNews()" class="nav-link text-light rounded" href="#">Takeda News</a>
+          <a id="news-btn" class="nav-link text-light rounded" href="#">Takeda News</a>
+        </li>
+        <li class="nav-item">
+          <a id="gallery-btn" class="nav-link text-light rounded" href="#">Galeria</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-light rounded" id="log-out-btn">Log Out</a>
@@ -69,19 +72,51 @@
   <br>
   <!--Top Navbar tohere  -->
 
-  <!-- <div class="container">
-    <div class="row">
-      <div class="col-3 mt-3">
-        <div class="card">
-          <img class="card-img-top" src="img/arrow.jpg" alt="Card image" style="width:100%">
-          <div class="card-body">
-            <h4 class="card-title">John Doe</h4>
-          </div>
+  <!-- Photo gallery from here -->
+
+  <div class="container">
+    <div id="photo-content" class="row">
+      <!-- Photos content here -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5"></div>
+    <button id="add-photo-btn" type="button" class="btn btn-dark mt-3 col-2">Añadir Foto</button>
+  </div>
+
+  <!-- The Photo Modal -->
+  <div class="modal" id="photo-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Añadir Foto</h4>
+          <button id="close-photo-modal-btn" type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form id="form-photo">
+            <div class="form-group">
+              <label for="Imgtitle">Titulo:</label>
+              <input type="text" class="form-control" id="Imgtitle">
+            </div>
+            <div>
+              <input type="file" class="form-control-file border mt-4" id="img-photo">
+            </div>
+            <button type="submit" id="add-photo-mdl-btn" class="btn btn-success mt-3">Add</button>
+            <button type="submit" id="edit-photo-mdl-btn" class="btn btn-primary mt-3">Edit</button>
+          </form>
+        </div>
+
       </div>
     </div>
-  </div> -->
-  
+  </div>
+
+  <!-- Photo gallery to here -->
+
   <!-- Contents of news from Here -->
 
   <div class="container">
@@ -306,6 +341,47 @@
     </form>
   </div>
   <!-- Modal add new to here -->
+
+  <!-- Modal Sub fron here -->
+  <div class="modal" id="subs-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button id="close-subs-mdl" type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Escuela</th>
+                    <th>Pais</th>
+                    <th>Email</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="t-body-student">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <p>Mandar correo al email del alumno facilitado con este link: </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal subs to here -->
 
   <div id="subs-peti-zone" class="container">
     <div class="row">
