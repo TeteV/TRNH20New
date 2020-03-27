@@ -451,7 +451,8 @@ function showNews(snap) {
       document.getElementById("add-news-btn").style.display = "none";
     }
    // creo que es aqui donde deberia ir el sort dado que abajo es donde le introducen en el html
-   // gracias por la ayuda tiburcio
+   // con el data[key].date puedes sacar la fecha en formato dd/mm/aaaa , aunqeu creo que le voy a tener que dar la vuelta en tal caso
+  // y las fechas de transforman en la linea 528
     var newsBody = document.getElementById("news-content");
     newsBody.innerHTML = rows;
 
