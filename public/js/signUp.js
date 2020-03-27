@@ -1,4 +1,5 @@
 window.onload = initialize;
+var errorSI = false;
 
 function initialize(){
 loadFirebase();
@@ -6,7 +7,7 @@ loadButtons();
 }
 
 function loadButtons(){
-    document.getElementById("submit-add-NS").addEventListener("submit", addNewStudent);
+    document.getElementById("submit-add-NS").addEventListener("submit", validatePass);
 }
 
 function loadFirebase() {
@@ -24,12 +25,22 @@ function loadFirebase() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   }
-  
 
-var errorSI = false;
+  function validatePass(){
+      var pwd1 = document.getElementById("addNSPwd").value;
+      var pwd2 = document.getElementById("addNSPwd2").value;
 
-function addNewStudent(event) {
-    event.preventDefault();
+      if(pwd1 == pwd2){
+          addNewStudent();
+      }else{
+          alert("contraseñas no coinciden");
+          document.getElementById("submit-add-NS").reset();
+          return false;
+      }
+  }
+
+function addNewStudent() {
+    //event.preventDefault();
 
     var email = event.target.addNSEmail.value;
     var password = event.target.addNSPwd.value;
