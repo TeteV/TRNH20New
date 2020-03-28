@@ -401,7 +401,25 @@ function downloadNews() {
 
 function showNews(snap) {
   console.log("Viendo news")
-  data = snap.val();
+  let data = snap.val();
+
+  let formattedData = [];
+
+  for(var key in data) {
+    let aux = data[key].date;
+    console.log(aux)
+    let auxElement = {};
+    auxElement.key = key;
+    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2);
+    formattedData.push(auxElement);
+  }
+  
+  console.log(formattedData);
+  
+  formattedData.sort( (a, b) => {
+    return - a.date.localeCompare(b.date);
+  });
+
   var rows = "";
 
   if (email != "invitado") {
@@ -412,7 +430,8 @@ function showNews(snap) {
       document.getElementById("subs-peti-zone").style.display = "block";
       document.getElementById("add-news-btn").style.display = "unset";
       document.getElementById("subs-peti-zone").style.display = "block";
-      for (var key in data) {
+      for (var i = 0; i < formattedData.length; i++) {
+        let key = formattedData[i].key;
         console.log("Admin")
         rows +=
           '<div class="media border p-3 col-sm-11 mt-3">' +
@@ -437,12 +456,14 @@ function showNews(snap) {
       document.getElementById("news-content").style.display = "unset";
       document.getElementById("to-signin").style.display = "none";
       document.getElementById("add-news-btn").style.display = "none";
-      for (var key in data) {
-        console.log("Normal")
+      for (var i = 0; i < formattedData.length; i++) {
+        let key = formattedData[i].key;
+        console.log("Normaltal")
+
         rows +=
           '<div class="media border p-3 col-sm-11 mt-3">' +
           '<div class="media-body">' +
-          '<h4>' + data[key].title + '<small><i>' + data[key].date + '</i></small></h4>' +
+          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + data[key].date + '</i></small></h4>' +
           '<p>' + data[key].body + '</p>' +
           '</div>' +
           '<img src="img/trnk.png" class="rounded-circle" style="width:60px;" />' +
@@ -450,9 +471,9 @@ function showNews(snap) {
       }
       document.getElementById("add-news-btn").style.display = "none";
     }
-   // creo que es aqui donde deberia ir el sort dado que abajo es donde le introducen en el html
-   // con el data[key].date puedes sacar la fecha en formato dd/mm/aaaa , aunqeu creo que le voy a tener que dar la vuelta en tal caso
-  // y las fechas de transforman en la linea 528
+    // creo que es aqui donde deberia ir el sort dado que abajo es donde le introducen en el html
+    // con el data[key].date puedes sacar la fecha en formato dd/mm/aaaa , aunqeu creo que le voy a tener que dar la vuelta en tal caso
+    // y las fechas de transforman en la linea 528
     var newsBody = document.getElementById("news-content");
     newsBody.innerHTML = rows;
 
@@ -720,6 +741,9 @@ function AddPhotoToList(event) {
     var imagenASubir = fichero2.files[0];
     var FType = imagenASubir.type;
     var upEmail = email;
+    var date = new Date();
+    var meses = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear();
 
     if (imagenASubir.type == "image/jpeg") {
       console.log("imagen")
@@ -737,7 +761,8 @@ function AddPhotoToList(event) {
               url: downloadURL,
               title,
               FType,
-              upEmail
+              upEmail,
+              date
             });
           });
         });
@@ -757,7 +782,8 @@ function AddPhotoToList(event) {
               url: downloadURL,
               title,
               FType,
-              upEmail
+              upEmail,
+              date
             });
           });
         });
