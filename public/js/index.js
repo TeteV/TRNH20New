@@ -414,8 +414,6 @@ function showNews(snap) {
     formattedData.push(auxElement);
   }
   
-  console.log(formattedData);
-  
   formattedData.sort( (a, b) => {
     return - a.date.localeCompare(b.date);
   });
@@ -622,6 +620,20 @@ function downloadPhotos() {
 function showPhotos(snap) {
   console.log("Viendo fotos")
   var data = snap.val();
+  let formattedData = [];
+
+  for(var key in data) {
+    let aux = data[key].date;
+    console.log(aux)
+    let auxElement = {};
+    auxElement.key = key;
+    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2);
+    formattedData.push(auxElement);
+  }
+
+  formattedData.sort( (a, b) => {
+    return - a.date.localeCompare(b.date);
+  });
   var rows = "";
 
   if (email != "invitado") {
@@ -632,7 +644,8 @@ function showPhotos(snap) {
       document.getElementById("to-signin").style.display = "none";
       document.getElementById("subs-peti-zone").style.display = "block";
       document.getElementById("add-news-btn").style.display = "none";
-      for (var key in data) {
+      for (var i = 0; i < formattedData.length; i++) {
+        let key = formattedData[i].key;
         //ESTOY CON EL SIGUIENTE PROBLEMA Y ES QUE ME SALE UNA ENCIMA DE OTRA 
         console.log("Admin")
         rows +=
@@ -658,7 +671,8 @@ function showPhotos(snap) {
       document.getElementById("photo-content").style.display = "unset";
       document.getElementById("to-signin").style.display = "none";
 
-      for (var key in data) {
+      for (var i = 0; i < formattedData.length; i++) {
+        let key = formattedData[i].key;
         console.log("Normal")
         rows +=
           '<div class="col-sm-3">' +
