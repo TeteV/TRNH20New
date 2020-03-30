@@ -10,7 +10,11 @@ nav{
   .far{
     font-size: 4vw;
   }
+  .modal{
+    width: 100%;
+  }
 }
+
 
 @media screen and (max-width: 600px) {
   .card-title-photo{
@@ -18,6 +22,9 @@ nav{
     margin-left: 0.5em;
     margin-top: 0.3em;
     font-size: 4.7vw;
+  }
+  .modal{
+    width: 100%;
   }
  
   .control{
@@ -203,26 +210,6 @@ color: red;
   background-color: #ccc;
 }
 
-/* Style the collapsible content. Note: hidden by default */
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-
-.collapsible:after {
-  content: '\02795'; /* Unicode character for "plus" sign (+) */
-  font-size: 13px;
-  color: white;
-  float: right;
-  margin-left: 5px;
-}
-
-.activee:after {
-  content: "\2796"; /* Unicode character for "minus" sign (-) */
-}
-
 #news-content{
   display: none;
 }
@@ -255,13 +242,8 @@ img {
   width:100%;
 }
 
-
-.card {
-  text-align: center;
-}
-
 .media{
-  width: 94%;
+  width: 95%;
 }
 
 #photo-modal{
@@ -328,10 +310,12 @@ img {
   width: 100%;
 }
 
-
 .card-title-photo{
   text-align: initial;
   margin-left: 0.5em;
   margin-top: 0.3em;
 }
 
+.modal{
+  width: 100%;
+}

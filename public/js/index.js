@@ -405,14 +405,15 @@ function showNews(snap) {
   let data = snap.val();
 
   let formattedData = [];
+  let auxElemenNoHour = "";
 
   for (var key in data) {
     let aux = data[key].date;
-    console.log(aux)
     let auxElement = {};
     auxElement.key = key;
-    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2);
+    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2)+ " " +aux.substring(11, 13) + ':' +aux.substring(14, 16) + ':' + aux.substring(17, 19) ;
     formattedData.push(auxElement);
+    auxElemenNoHour = aux.substring(0, 2) + '/' + aux.substring(3, 5) + '/' + aux.substring(6, 10);
   }
 
   formattedData.sort((a, b) => {
@@ -435,7 +436,7 @@ function showNews(snap) {
         rows +=
           '<div class="media border p-3 col-sm-11 mt-3">' +
           '<div class="media-body">' +
-          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + data[key].date + '</i></small></h4>' +
+          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + auxElemenNoHour + '</i></small></h4>' +
           '<p>' + data[key].body + '</p>' +
           '<div class="row">' +
           // '<i  class="fas fa-ellipsis-h ml-3 plask" data-news="' + key + '"></i>' +
@@ -462,7 +463,7 @@ function showNews(snap) {
         rows +=
           '<div class="media border p-3 col-sm-11 mt-3">' +
           '<div class="media-body">' +
-          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + data[key].date + '</i></small></h4>' +
+          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + auxElemenNoHour + '</i></small></h4>' +
           '<p>' + data[key].body + '</p>' +
           '</div>' +
           '<img src="img/trnk.png" class="rounded-circle" style="width:60px;" />' +
@@ -546,7 +547,7 @@ function AddNewsToList(event) {
     var body = formNews.Nbody.value;
     date = new Date();
     var meses = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear();
+    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear()+ "/" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() ;
     firebase.database().ref("news/").push({
       title,
       body,
@@ -625,11 +626,13 @@ function showPhotos(snap) {
 
   for (var key in data) {
     let aux = data[key].date;
-    console.log(aux)
+    //console.log(aux)
     let auxElement = {};
     auxElement.key = key;
-    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2);
+    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2)+ " " +aux.substring(11, 13) + ':' +aux.substring(14, 16) + ':' + aux.substring(17, 19) ;
     formattedData.push(auxElement);
+    //console.log(formattedData)
+    
   }
 
   formattedData.sort((a, b) => {
@@ -756,7 +759,7 @@ function AddPhotoToList(event) {
     var upEmail = email;
     var date = new Date();
     var meses = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear();
+    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear()+ "/" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() ;
 
     if (imagenASubir.type == "image/jpeg") {
       console.log("imagen")
