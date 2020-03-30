@@ -3,6 +3,7 @@ window.onload = initialize;
 function initialize() {
     loadFirebase();
     loadButtons();
+    screenMax();
 }
 
 function loadButtons() {
@@ -77,3 +78,13 @@ function validateForm(event) {
     }
    addInfo();
 }
+
+function screenMax(){
+    if(screen.width < 500){
+      console.log(screen.width)
+     // var columsCont = document.getElementById("col-contact");
+      //columsCont.style.;
+      var map = document.getElementById("contact-map");
+      map.style.height = "450px";
+    }
+  }

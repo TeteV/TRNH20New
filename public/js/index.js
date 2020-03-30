@@ -49,6 +49,7 @@ function loadButtons() {
   document.getElementById("photo-modal").addEventListener("submit", AddPhotoToList);
 }
 
+
 function downloadTechs() {
   selection = document.getElementById("sel1").value;
   var techniques = firebase.database().ref(selection + "/technique");
@@ -651,8 +652,8 @@ function showPhotos(snap) {
         rows +=
           '<div class="col-sm-3">' +
           '<div class="card mt-2">' +
-          '<img class="card-img-top" src="' + data[key].url + '" alt="Card image" style="width:100%">' +
-          '<p class="card-title-photo">' + data[key].title + '</p>' +
+          '<img class="card-img-top" src="' + data[key].url + '" alt="Card image" >' +
+          '<h6 class="card-title-photo">' + data[key].title + '</h6>' +
           '<div class="card-body">' +
           '<div class="row">' +
           '<i class="far fa-trash-alt delete" data-photo="' + key + '"></i>' +
@@ -677,10 +678,10 @@ function showPhotos(snap) {
         rows +=
           '<div class="col-sm-3">' +
           '<div class="card shadow bg-white mb-2">' +
-          '<img class="card-img-top rounded" src="' + data[key].url + '" alt="Card image">' +
+          '<img class="card-img-top rounded" src="' + data[key].url + '" alt="No image">' +
           '<p class="card-title-photo">' + data[key].title + '</p>' +
-          '<div class="card-body">' +
-          '</div>' +
+          /*'<div class="card-body">' +
+          '</div>' +*/
           '</div>' +
           '</div>'
       }

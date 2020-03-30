@@ -2,6 +2,7 @@ window.onload = initialize;
 
 function initialize() {
     loadButtns();
+    screenMax();
 }
 
 function loadButtns() {
@@ -27,4 +28,14 @@ function loadCollapsive() {
         }
       });
     }
+}
+
+function screenMax(){
+  if(screen.width > 600){
+    console.log(screen.width)
+    var image = document.getElementsByClassName("img-car");
+    var imageCol = document.getElementsByClassName("column-row");
+    image.width = "10000";
+    console.log(image.width)
+  }
 }
