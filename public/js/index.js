@@ -406,7 +406,7 @@ function showNews(snap) {
 
   let formattedData = [];
 
-  for(var key in data) {
+  for (var key in data) {
     let aux = data[key].date;
     console.log(aux)
     let auxElement = {};
@@ -414,8 +414,8 @@ function showNews(snap) {
     auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2);
     formattedData.push(auxElement);
   }
-  
-  formattedData.sort( (a, b) => {
+
+  formattedData.sort((a, b) => {
     return - a.date.localeCompare(b.date);
   });
 
@@ -623,7 +623,7 @@ function showPhotos(snap) {
   var data = snap.val();
   let formattedData = [];
 
-  for(var key in data) {
+  for (var key in data) {
     let aux = data[key].date;
     console.log(aux)
     let auxElement = {};
@@ -632,7 +632,7 @@ function showPhotos(snap) {
     formattedData.push(auxElement);
   }
 
-  formattedData.sort( (a, b) => {
+  formattedData.sort((a, b) => {
     return - a.date.localeCompare(b.date);
   });
   var rows = "";
@@ -651,14 +651,12 @@ function showPhotos(snap) {
         console.log("Admin")
         rows +=
           '<div class="col-sm-3">' +
-          '<div class="card mt-2">' +
-          '<img class="card-img-top" src="' + data[key].url + '" alt="Card image" >' +
-          '<h6 class="card-title-photo">' + data[key].title + '</h6>' +
+          '<div class="card shadow bg-white mb-2">' +
+          '<img class="card-img-top rounded" src="' + data[key].url + '" alt="No image">' +
+          '<p class="card-title-photo">' + data[key].title + '</p>' +
           '<div class="card-body">' +
-          '<div class="row">' +
           '<i class="far fa-trash-alt delete" data-photo="' + key + '"></i>' +
           '<i class="far fa-edit edit" data-photo="' + key + '"></i>' +
-          '</div>' +
           '</div>' +
           '</div>' +
           '</div>'

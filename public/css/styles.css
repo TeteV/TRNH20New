@@ -3,7 +3,22 @@ nav{
   width: 100%;
 }
 
+@media screen and (max-width: 575px) {
+  #cancelLog{
+    margin-top: 5px;
+  }
+  .far{
+    font-size: 4vw;
+  }
+}
+
 @media screen and (max-width: 600px) {
+  .card-title-photo{
+    text-align: initial;
+    margin-left: 0.5em;
+    margin-top: 0.3em;
+    font-size: 4.7vw;
+  }
  
   .control{
     font-size: 3vw;
@@ -318,9 +333,5 @@ img {
   text-align: initial;
   margin-left: 0.5em;
   margin-top: 0.3em;
-  font-size: 4.7vw;
 }
 
-.modal{
-  width: 90%;
-}
