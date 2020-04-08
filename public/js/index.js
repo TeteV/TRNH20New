@@ -47,6 +47,8 @@ function loadButtons() {
   document.getElementById("add-photo-btn").addEventListener("click", openPhotoModal);
   document.getElementById("close-photo-modal-btn").addEventListener("click", closePhotoModal);
   document.getElementById("photo-modal").addEventListener("submit", AddPhotoToList);
+  document.getElementById("batto-shiai").addEventListener("click", showBattoShiai);
+  document.getElementById("BS-button").addEventListener("click", bSCountdown);
 }
 
 
@@ -384,6 +386,7 @@ function showTakedaNews() {
   document.getElementById("all-content").style.display = "none";
   document.getElementById("photo-content").style.display = "none";
   document.getElementById("add-photo-btn").style.display = "none";
+  document.getElementById("BS-content").style.display = "none";
   downloadNews();
 }
 
@@ -393,6 +396,7 @@ function showTechsList() {
   document.getElementById("all-content").style.display = "unset";
   document.getElementById("photo-content").style.display = "none";
   document.getElementById("add-photo-btn").style.display = "none";
+  document.getElementById("BS-content").style.display = "none";
   downloadTechs();
 }
 
@@ -464,7 +468,7 @@ function showNews(snap) {
         rows +=
           '<div class="media border p-3 col-sm-11 mt-3">' +
           '<div class="media-body">' +
-          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + auxElemenNoHour + '</i></small></h4>' +
+          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + data[key].date + '</i></small></h4>' +
           '<p>' + data[key].body + '</p>' +
           '</div>' +
           '<img src="img/trnk.png" class="rounded-circle" style="width:60px;" />' +
@@ -845,6 +849,7 @@ function showPhotoGallery() {
   document.getElementById("all-content").style.display = "none";
   document.getElementById("news-content").style.display = "none";
   document.getElementById("photo-content").style.display = "unset";
+  document.getElementById("BS-content").style.display = "none";
   downloadPhotos();
 }
 
@@ -887,4 +892,74 @@ function deletePeti(event) {
   var keyPetiToDelete = buttonClicked.getAttribute("data-peti");
   var refPetiToDelete = firebase.database().ref("/subscriptions/" + keyPetiToDelete);
   refPetiToDelete.remove();
+}
+
+function showBattoShiai(){
+  document.getElementById("all-content").style.display = "none";
+  document.getElementById("news-content").style.display = "none";
+  document.getElementById("photo-content").style.display = "none";
+  document.getElementById("add-photo-btn").style.display = "none";
+  document.getElementById("BS-content").style.display = "unset";
+}
+
+
+function bSCountdown(){
+  setTimeout("generateBattoShiai()",2000);
+}
+
+function generateBattoShiai(){
+  var y;
+    a = document.getElementById("kiritsuke");
+
+   y = Math.random() * (4 - 1) + 1;
+    var q = Math.round(y);
+    if(q == 1){
+      a.innerHTML = "Shomen-Kiritsuke";
+    }
+    if(q == 2){
+      a.innerHTML = "Migi-Men-Kiritsuke";
+    }
+    if(q == 3){
+      a.innerHTML = "Do-Kiritsuke";
+    }
+    if(q == 4){
+      a.innerHTML = "Kote-Kiritsuke";
+    }
+
+    setTimeout("generate2ndBattoShiai()",1000);
+}
+
+function generate2ndBattoShiai(){
+  var y;
+    a = document.getElementById("kiri");
+
+   y = Math.random() * (9 - 1) + 1;
+    var q = Math.round(y);
+    if(q == 1){
+      a.innerHTML = "Shomen-Giri";
+    }
+    if(q == 2){
+      a.innerHTML = "Migi-Men-Giri";
+    }
+    if(q == 3){
+      a.innerHTML = "Hidari-Men-Giri";
+    }
+    if(q == 4){
+      a.innerHTML = "Migi-Do-Giri";
+    }
+    if(q == 5){
+      a.innerHTML = "Hidari-Do-Giri";
+    }
+    if(q == 6){
+      a.innerHTML = "Migi-Kesa-Giri";
+    }
+    if(q == 7){
+      a.innerHTML = "Hidari-Kesa-Giri";
+    }
+    if(q == 8){
+      a.innerHTML = "Jodan-Tsuki";
+    }
+    if(q == 9){
+      a.innerHTML = "Chudan-Tsuki";
+    }
 }
