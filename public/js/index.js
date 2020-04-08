@@ -910,56 +910,91 @@ function bSCountdown(){
 function generateBattoShiai(){
   var y;
     a = document.getElementById("kiritsuke");
+    s = document.getElementById("son1");
 
    y = Math.random() * (4 - 1) + 1;
     var q = Math.round(y);
     if(q == 1){
       a.innerHTML = "Shomen-Kiritsuke";
+      s.src = "audio/Shomenkiritske.m4a";
+      s.play();
     }
     if(q == 2){
       a.innerHTML = "Migi-Men-Kiritsuke";
+      s.src = "audio/Migimenkiritsuke.m4a";
+      s.play();
     }
     if(q == 3){
       a.innerHTML = "Do-Kiritsuke";
+      s.src = "audio/dokiritsuke.m4a";
+      s.play();
     }
     if(q == 4){
       a.innerHTML = "Kote-Kiritsuke";
+      s.src = "audio/kotekiritsuke.m4a";
+      s.play();
     }
 
-    setTimeout("generate2ndBattoShiai()",1000);
+    setTimeout("generate2ndBattoShiai()",2000);
 }
 
 function generate2ndBattoShiai(){
   var y;
     a = document.getElementById("kiri");
+    s = document.getElementById("son2K");
 
    y = Math.random() * (9 - 1) + 1;
     var q = Math.round(y);
     if(q == 1){
       a.innerHTML = "Shomen-Giri";
+      s.src = "audio/shomengiri.m4a";
+      s.play();
     }
     if(q == 2){
       a.innerHTML = "Migi-Men-Giri";
+      s.src = "audio/migimenkiri.m4a";
+      s.play();
     }
     if(q == 3){
       a.innerHTML = "Hidari-Men-Giri";
+      s.src = "audio/hidarimenkiri.m4a";
+      s.play();
     }
     if(q == 4){
       a.innerHTML = "Migi-Do-Giri";
+      s.src = "audio/migidokiri.m4a";
+      s.play();
     }
     if(q == 5){
       a.innerHTML = "Hidari-Do-Giri";
+      s.src = "audio/hidaridokiri.m4a";
+      s.play();
     }
     if(q == 6){
       a.innerHTML = "Migi-Kesa-Giri";
+      s.src = "audio/migikesakiri.m4a";
+      s.play();
     }
     if(q == 7){
       a.innerHTML = "Hidari-Kesa-Giri";
+      s.src = "audio/hidarikesakiri.m4a";
+      s.play();
     }
     if(q == 8){
       a.innerHTML = "Jodan-Tsuki";
+      s.src = "audio/jodantkusi.m4a";
+      s.play();
     }
     if(q == 9){
       a.innerHTML = "Chudan-Tsuki";
+      s.src = "audio/chudantsuki.m4a";
+      s.play();
     }
+    setTimeout("hayime()",2000);
+}
+
+function hayime(){
+  s = document.getElementById("hayime");
+  s.src = "audio/hayime.m4a";
+  s.play();
 }
