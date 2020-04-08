@@ -319,3 +319,7 @@ img {
 .modal{
   width: 100%;
 }
+
+#batto-shiai{
+  display: none;
+}

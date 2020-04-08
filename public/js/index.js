@@ -193,6 +193,7 @@ function showTec(snap) {
     document.getElementById("gallery-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("log-out-btn").style.display = "block";
+    document.getElementById("batto-shiai").style.display = "block";
   } else {//end If email != invitado
     document.getElementById("all-content").style.display = "none";
     document.getElementById("to-signin").style.display = "unset";
@@ -403,20 +404,20 @@ function downloadNews() {
 function showNews(snap) {
   console.log("Viendo news")
   let data = snap.val();
-
   let formattedData = [];
-  let auxElemenNoHour = "";
 
-  for (var key in data) {
+  for(var key in data) {
     let aux = data[key].date;
+    console.log(aux)
     let auxElement = {};
     auxElement.key = key;
-    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2)+ " " +aux.substring(11, 13) + ':' +aux.substring(14, 16) + ':' + aux.substring(17, 19) ;
+    auxElement.date = aux.substring(5, 10) +  aux.substring(3, 5) +  aux.substring(0, 2)+  aux.substring(10, 13) + aux.substring(14, 16);
     formattedData.push(auxElement);
-    auxElemenNoHour = aux.substring(0, 2) + '/' + aux.substring(3, 5) + '/' + aux.substring(6, 10);
   }
-
-  formattedData.sort((a, b) => {
+  
+  console.log(formattedData);
+  
+  formattedData.sort( (a, b) => {
     return - a.date.localeCompare(b.date);
   });
 
@@ -436,7 +437,7 @@ function showNews(snap) {
         rows +=
           '<div class="media border p-3 col-sm-11 mt-3">' +
           '<div class="media-body">' +
-          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + auxElemenNoHour + '</i></small></h4>' +
+          '<h4>' + data[key].title + '<small>&nbsp;&nbsp;<i>' + data[key].date + '</i></small></h4>' +
           '<p>' + data[key].body + '</p>' +
           '<div class="row">' +
           // '<i  class="fas fa-ellipsis-h ml-3 plask" data-news="' + key + '"></i>' +
@@ -495,6 +496,7 @@ function showNews(snap) {
     document.getElementById("gallery-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("log-out-btn").style.display = "block";
+    document.getElementById("batto-shiai").style.display = "block";
   } else {//end If email != invitado
     document.getElementById("all-content").style.display = "none";
     document.getElementById("to-signin").style.display = "unset";
@@ -547,7 +549,7 @@ function AddNewsToList(event) {
     var body = formNews.Nbody.value;
     date = new Date();
     var meses = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear()+ "/" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() ;
+    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear()+ " " + date.getHours() + ":" + date.getMinutes();
     firebase.database().ref("news/").push({
       title,
       body,
@@ -624,18 +626,18 @@ function showPhotos(snap) {
   var data = snap.val();
   let formattedData = [];
 
-  for (var key in data) {
+  for(var key in data) {
     let aux = data[key].date;
-    //console.log(aux)
+    console.log(aux)
     let auxElement = {};
     auxElement.key = key;
-    auxElement.date = aux.substring(6, 10) + '-' + aux.substring(3, 5) + '-' + aux.substring(0, 2)+ " " +aux.substring(11, 13) + ':' +aux.substring(14, 16) + ':' + aux.substring(17, 19) ;
+    auxElement.date = aux.substring(5, 10) +  aux.substring(3, 5) +  aux.substring(0, 2)+  aux.substring(10, 13) + aux.substring(14, 16);
     formattedData.push(auxElement);
-    //console.log(formattedData)
-    
   }
-
-  formattedData.sort((a, b) => {
+  
+  console.log(formattedData);
+  
+  formattedData.sort( (a, b) => {
     return - a.date.localeCompare(b.date);
   });
   var rows = "";
@@ -705,6 +707,7 @@ function showPhotos(snap) {
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("log-out-btn").style.display = "block";
     document.getElementById("add-photo-btn").style.display = "unset";
+    document.getElementById("batto-shiai").style.display = "block";
   } else {//end If email != invitado
     document.getElementById("all-content").style.display = "none";
     document.getElementById("to-signin").style.display = "unset";
@@ -759,7 +762,7 @@ function AddPhotoToList(event) {
     var upEmail = email;
     var date = new Date();
     var meses = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear()+ "/" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() ;
+    date = date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear()+ "/" + date.getHours() + ":" + date.getMinutes();
 
     if (imagenASubir.type == "image/jpeg") {
       console.log("imagen")
